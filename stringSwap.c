@@ -12,7 +12,7 @@ int main(void){
 	v_exchange(x);
 	/* call for value exchange */
 	for (i=0; i<SIZE; i++){
-		printf("x[%d]=%d, &x[%d]=%x\n", i, x[i], i, &x[i]);
+		printf("x[%d]=%d, &x[%d]=%n\n", i, x[i], i, &x[i]);
 	}
 	return 0;
 }
@@ -21,7 +21,7 @@ void v_exchange(int a[]){
 	int i;
 	int end;
 	//for every element in a[] 
-		for(i= 0; i<SIZE; i++){		
+		for(i= 0; i<SIZE/2; i++){		
 		//store the end element
 			end = a[(SIZE-1-i)];
 		// put the current i element in size-1
@@ -29,5 +29,6 @@ void v_exchange(int a[]){
 		// put stored element in a[i]
 			a[i] = end;
 		}
+
 }
 
