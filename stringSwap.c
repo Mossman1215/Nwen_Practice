@@ -19,9 +19,15 @@ int main(void){
 
 void v_exchange(int a[]){
 	int i;
+	int end;
 	//for every element in a[] 
+		for(i= 0; i<SIZE; i++){		
 		//store the end element
+			end = a[(SIZE-1-i)];
 		// put the current i element in size-1
+			a[(SIZE-1-i)] = a[i];
 		// put stored element in a[i]
+			a[i] = end;
+		}
 }
 
