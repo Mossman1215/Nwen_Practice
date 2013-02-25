@@ -22,6 +22,6 @@ int main(void){
 	printf("%d\n",*(*(m+1)+1));
 	printf("%d\n",*(m[1]+2));
 	printf("%d\n",(*(m+2))[3]);
-	printf("%d\n",(*parr+3))[2]);
+	printf("%d\n",(*(parr+3))[2]);//this is a problem point
 return 0;
 }
