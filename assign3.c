@@ -23,5 +23,12 @@ int main(void){
 	printf("%d\n",*(m[1]+2));
 	printf("%d\n",(*(m+2))[3]);
 	printf("%d\n",(*(parr+3))[2]);//this is a problem point
+	//write a for loop to show all the values of parr
+	int i,j;	
+	for(i =0;i<20;i++){
+		for(j=0;j<20;j++){
+		printf("%d\n",(*(parr+i))[j]);
+		}
+	}
 return 0;
 }
