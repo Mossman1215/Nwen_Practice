@@ -15,6 +15,6 @@ int col; /* column counter */
 			printf("*");		
 		}
 	}
-
+	return 0;
 }
 
