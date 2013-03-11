@@ -19,9 +19,55 @@ int eCount = 0; /* total e grades */
 //while grade is not 'the exit key'
 //ask for a number
 // switch statement
-
-
+//loop
+	printf("Enter grades until done. press x to end \n"	
+		do{
+			scanf("%c",&grade);
+			if(isupper(grade)){
+				switch(grade) {
+				case 65:
+					aCount++;
+					break;
+				case 66:
+					bCount++;
+					break;
+				case 67:
+					cCount++;
+					break;
+				case 68:
+					dCount++;
+					break;
+				case 69:
+					eCount++;
+					break;
+				default:
+					break;
+			}
+			else{
+				case :
+					aCount++;
+					break;
+				case 97:
+					bCount++;
+					break;
+				case 98:
+					cCount++;
+					break;
+				case 99:
+					dCount++;
+					break;
+				case 100:
+					eCount++;
+					break;
+				default:
+					break;
+			}
+		}
+	}while(grade != 'x');
+	printf("the answers  \n",);
 }
+//capital letters from 65to70
+//lower case from 97 to 102
 /*
 switch from msdn
 for reference
