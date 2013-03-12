@@ -7,7 +7,7 @@ end the input). You can only use the following variables.*/
 #include <ctype.h>
 
 int main (void){
-int grade = 0;
+char grade = 0;
 /* current grade. You can also use char grade.
 You may use either getchar or scanf to handle the input.
 */
@@ -23,7 +23,7 @@ int eCount = 0; /* total e grades */
 //loop
 	printf("Enter grades until done. press x to end \n");	
 		do {
-			scanf("%d",&grade);
+			scanf("%c",&grade);
 			if(isupper(grade)){
 				switch(grade) {
 				case 65:
@@ -65,8 +65,9 @@ int eCount = 0; /* total e grades */
 					break;
 				}
 			}
-		} while(grade != 'x');
-	printf("the answers %c %c %c %c %c \n",aCount, bCount, cCount, dCount, eCount);
+			printf("%d\n",grade);
+		} while(grade != 120);
+	printf("the answers %d %d %d %d %d \n",aCount, bCount, cCount, dCount, eCount);
 	return 0;	
 } 
 	
