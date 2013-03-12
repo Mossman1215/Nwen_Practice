@@ -1,0 +1,13 @@
+1. (4 marks) Discuss the four steps of compiling using gcc and give the
+corresponding gcc options. (You need to specify what the four steps do.)
+preprocessing - text substitution
+compilation - turn c code into asembly language
+assembly - turn human code to machine code
+linking - combine all the files together
+
+2. (3 marks) Discuss the major differences between Java and C.
+Java does not use pointers
+Java uses garbage collection to free memory
+Java runs on a virtual machine enabling the same byte code to run on different operating systems.
+Java forces the object oriented model for software
+C uses standalone functions rather than methods in classes
