@@ -14,24 +14,28 @@ int main( void ){
 }
 
 int stringcmp(const char *s1, const char *s2 ){
-	int i,j,length1,length2;
+	int i,length1,length2;
 	//find length of string1
 	//check if strings are equally long	otherwise why compare them
+	length1 = stringlen(s1);
+	length2 = stringlen(s2);
+
 	if(length1 != length2){
 		return 0;
 	}
 	for(i=0;i<length1;i++){
-				
+		if(s1[i] != s2[i]){
+			return 0;		
+		}
 	}
-	return 0;//if the arrays are different return 0
+	return 1;//if the arrays are the same return 1
 }
 
 int stringlen( const char *s ){
 	int i;
 	int sum = 0;
 	for(i=0;i<80;i++){
-		if(s[i] == 0){//scanf ignores return key! //zero is different from '0'
-			printf("return sum of ");			
+		if(s[i] == 0){//scanf ignores return key! //zero is different from '0'			
 			return sum;
 		}
 		sum++;

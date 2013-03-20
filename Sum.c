@@ -5,9 +5,9 @@ algorithm, respectively.
 #include <time.h>
 #include <stdio.h>
 
-unsigned int sum1(unsigned int from,unsigned int to); /* recursion */
-unsigned int sum2(unsigned int from,unsigned int to); /* iteration */
-unsigned int sum3(unsigned int from,unsigned int to); /* algorithm */
+unsigned int sum1(unsigned int from, unsigned int to); /* recursion */
+unsigned int sum2(unsigned int from, unsigned int to); /* iteration */
+unsigned int sum3(unsigned int from, unsigned int to); /* algorithm */
 
 int main(){	
 	unsigned int s;
@@ -37,21 +37,23 @@ int main(){
 	return 0;
 }
 //define sum fuctions here
-int sum1(unsigned int from, unsigned int to){
+unsigned int sum1(unsigned int from, unsigned int to){
 	if(to == from){
 		return 1;	
 	}	
-	return sum1(from,to-1)+1;
+	return sum1(from,to-1)+to;
 }
 
-int sum2(unsigned int from, unsigned int to){
-	for(from; from<to;from++){	
-		printf("%d",from);	
+unsigned int sum2(unsigned int from, unsigned int to){
+	int total =0;
+	int current;
+	for(current = (int)from; current<to+1;current++){	
+		total = total + current;
 	}	
-	return from;
+	return total;
 }
-int sum3(unsigned int from, unsigned int to){
-	return to*((to+from)/2);
+unsigned int sum3(unsigned int from, unsigned int to){
+	return to*(((float)(to+from))/2);
 }
 
 
