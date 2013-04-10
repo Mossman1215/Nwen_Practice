@@ -3,8 +3,8 @@
 struct date {
 	int month, day, year;
 };
-int compare_dates(struct date d1, struct date d2);
-void put_date(struct date d);
+int compare_dates(struct date *d1, struct date *d2);
+void put_date(struct date *d);
 int main(void)
 {
 struct date d1, d2;
@@ -34,17 +34,18 @@ return 0;
 *			date1's day is less than date2's day
 *				then return true
 *	otherwise return false
-* 
+* EDIT:
+*now uses pointers
 */
-int compare_dates(struct date d1, struct date d2){
-	if(d1.year<d2.year&&d1.month<d2.month&&d1.day<d2.day){
+int compare_dates(struct date *ptr_d1, struct date *ptr_d2){
+	if(ptr_d1->year<ptr_d2->year&&ptr_d1->month<ptr_d2->month&&d1->day<ptr_d2->day){
 		return 1
 	}else{
 		return 0;
 	}
 }
-void put_date(struct date d)
+void put_date(struct date *ptr_d)
 {
-printf("%d/%d/%.2d", d.month, d.day, d.year);
+printf("%d/%d/%.2d", ptr_d->month, ptr_d->day, ptr_d->year);
 }
 
