@@ -9,7 +9,9 @@ int main(void)
 {
 struct date *d1, *d2;
 printf("Enter first date (mm/dd/yy): ");
-/* for you to complete */
+
+printf("enter month");
+
 printf("Enter second date (mm/dd/yy): ");
 /* for you to complete */
 if (compare_dates(d1, d2) < 0) {
@@ -39,9 +41,9 @@ return 0;
 */
 int compare_dates(struct date *ptr_d1, struct date *ptr_d2){
 	if(ptr_d1->year < ptr_d2->year && ptr_d1->month < ptr_d2->month && ptr_d1->day < ptr_d2->day){
-		return 1;
-	}else{
 		return 0;
+	}else{
+		return 1;
 	}
 }
 void put_date(struct date *ptr_d)
