@@ -6,7 +6,7 @@ void maximum( int grades[][ EXAMS ],int pupils, int tests );
 void average( int grades[][ EXAMS ],int pupils, int tests );
 void printArray( int grades[][ EXAMS ], int pupils, int tests );
 void printMenu( void );
-
+/*a significant number of these comments don't add anyinformation*/
 int main(void){
 	
 	/* pointer to a function that takes as parameters a
@@ -21,23 +21,31 @@ int main(void){
 		do {
 			printMenu();
 			scanf( "%d", &choice );
-		} while ( choice < 0 || choice > 4 ); /* end do...while */
+		} while ( choice < 0 || choice > 4 ){ /* end do...while */
 		
-		/* pass choice into the array */
+	/* pass choice into the array */
+			(*processGrades[choice])();
 	/* for you to complete */
 
 		} /* end while */
 
 		return 0; /* indicate successful termination */
 	} /* end main */
-
+}
 /* search for the minimum value */
 void minimum( int grades[][ EXAMS ], int pupils, int tests ){
 	int i; /* loop counter */
 	int j; /* loop counter */
 	int lowGrade = 100; /* set lowGrade to highest possible score */
-
-	/* for you to complete */
+	/*do a basic double for loop to find minimum value*/
+	for(i=0;i<pupils;i++){
+		for(i=0;i<tests;i++){
+			int current = grades[i][j];
+			if(current < lowGrade){
+				lowGrade = current;
+			}
+		}
+	}
 
 	printf( "\n\tThe lowest grade is %d\n", lowGrade );
 } /* end function minimum */
@@ -48,9 +56,15 @@ void maximum( int grades[][ EXAMS ], int pupils, int tests ){
 	int i; /* loop counter */
 	int j; /* loop counter */
 	int highGrade = 0; /* set highGrade to lowest possible score */
-	
-	/* for you to complete */
-		
+	/*do another double for loop to find maximum value*/
+	for(i=0;i<pupils;i++){
+		for(i=0;i<tests;i++){
+			int current = grades[i][j];
+			if(current > HighGrade){
+				highGrade = current;
+			}
+		}
+	}
 	printf( "\n\tThe highest grade is %d\n", highGrade );
 } /* end function maximum */
 
@@ -61,7 +75,13 @@ void average( int grades[][ EXAMS ], int pupils, int tests ){
 	int j; /* loop counter */
 	int total; /* sum of all grades */
 	printf( "\n" );
-	
+	/*double for loop that sums with total variable over every value in grades*/
+	for(i=0;i<pupils;i++){
+		for(i=0;i<tests;i++){
+			int current = grades[i][j];
+			total = total + current;
+		}
+	}
 	/* for you to complete */
 
 } /* end function average */
@@ -73,7 +93,11 @@ void printArray( int grades[][ EXAMS ], int pupils, int tests ){
 	int j; /* loop counter */
 	
 	printf( "\n\t [ 0 ][ 1 ][ 2 ][ 3 ]" );
-
+	for(i=0;i<pupils;i++){
+		for(i=0;i<tests;i++){
+			printf("%d ",grades[i][j]);
+		}
+	}
 	/* for you to complete */
 	printf( "\n" );
 } /* end function printArray */
