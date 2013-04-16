@@ -1,5 +1,6 @@
 #include <stdio.h>
 /* Note: Program assumes years are in the same century. */
+typedef enum {false = -1,true = 1} bool;
 struct date {
 	int month, day, year;
 };
@@ -29,7 +30,7 @@ return 0;
 }
 /*
 *if date 1 is earlier than date 2 this function should
-*return an int that should be treated as a bool with 1 being true and 0 being false  
+*return an int that should be treated as a bool with 1 being true and -1 being false  
 *algorithm:
 *	if date1 year is less than date2's year and
 *		date1's month is less than date2's month and
@@ -40,11 +41,16 @@ return 0;
 *now uses pointers
 */
 int compare_dates(struct date *ptr_d1, struct date *ptr_d2){
-	if(ptr_d1->year < ptr_d2->year && ptr_d1->month < ptr_d2->month && ptr_d1->day < ptr_d2->day){
-		return 0;
-	}else{
-		return 1;
+	if(d1->year>d2->year){
+		return false;
 	}
+	if(d1->month>d2->month){
+		return false;
+	}
+	if(d1->day>d2->day){
+		return false;
+	}
+	return true;
 }
 void put_date(struct date *ptr_d)
 {
