@@ -21,19 +21,32 @@
 		(*(m+2))[3] = 8
 		(*(parr+3))[2] = 66
 
+3.(6 marks) 
+	See the following statements.
+		char *pa[] = {"12", "34", "56"};
+		int m[2][3] = {{1, 2, 3}, {4, 5, 6}};
+		int (*ppm)[2][3] = &m;
+
+	Give the values of the following expressions.
+		sizeof(pa)= 12
+		sizeof(*pa)= 4
+		sizeof(**pa)= 4 
+		sizeof(ppm)= 4
+		sizeof(*ppm)= 4
+		sizeof(**ppm)= 12
+
+
 4. (6 marks) Declare p.
-	p is a 5-element array of pointers to char.
+	
  char *p[5];
-	p is a pointer to a 10-element char array.
+	
  char (*p)[10];
-	p is a function that takes an int argument and returns a pointer to char.
+	
  char *p(int);
-	p is a function that takes a char array and returns a pointer to int.
+	
  int *p(char *);
-	p is a pointer to a function that takes two int arguments and returns a pointer to an
-	int.
+	
  int *(*p)(int,int);
-	p is a function that takes no arguments and returns a pointer to a function that takes an
-	int argument and returns a pointer to a 10-element int array.
+
  int(*)[10] (*p)(void);
 
