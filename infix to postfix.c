@@ -1,6 +1,5 @@
 #include <stdio.h>
-#include "MinUnit.h"
-#include <malloc.h>
+#include <stdlib.h>
 struct stackNode {
 	char data;
 	struct stackNode *nextPtr;
@@ -32,27 +31,43 @@ int main(void){
 	printf("output: %s\n", input);
 	return 0;
 }
-
-
-/* function that converts to postfix and calls printstack*/
+/*
+ function that converts to postfix and calls printstack
+ */
 void convertToPostfix(char infix[],char postfix[]){
 	int index = 0;
 	int* indexPtr = &index;
-	StackNodePtr head = malloc(sizeof(StackNode));
-	StackNodePtr *headPtr = &head;
-	skipWhiteSpace(indexPtr,infix);
-	StackNode n = {infix[index],NULL};
-	head = &n;
-	while(infix[index]!= '\0'){
-		skipWhiteSpace(indexPtr,infix);	
-		push(headPtr,infix[index]);
-		index++;
+	StackNodePtr tmp = malloc(sizeof(StackNode));
+	if(tmp == NULL){
+		printf("memory allocation failure\n");
+		exit(0);
+	}else{
+		StackNodePtr head = tmp;	
 	}
+	StackNodePtr *headPtr = &head;
+	
+	recursiveSolve(headPtr,infix,postfix);
+	
 }
 /**
 *	functioun to solve the convert to postfix thing
+*	algorithm
+*	if infix is digit copy to postfix
+*	if infix is (
+		push on stack
+	if isoperator
+		while there is operator on stack
+			if the top stack operator is higher than current operators
+				popstack and put in postfix
+				push current onto stack
+
+	if infix is )
+		while '(' is not top of stack
+		pop operators from stack and place in postfix
+		then
+		discard '('
 */
-int recursiveSolve(StackNodePtr *,char*,char*){
+void recursiveSolve(StackNodePtr *topPtr,char*infix,char*postfix){
 
 }
 /*
@@ -63,12 +78,12 @@ int recursiveSolve(StackNodePtr *,char*,char*){
 */
 void push( StackNodePtr *topPtr, char value ){
 	StackNodePtr temp = *topPtr;
+	//check for malloc falure
 	StackNodePtr newPtr = malloc(sizeof(StackNode));
 	StackNode newNode = {value,temp};
 	newPtr = &newNode;
 	*topPtr = newPtr;
 }
-
 /*
 *	take the head value
 *	get it's .next node and store it in a temp variable
@@ -78,7 +93,13 @@ void push( StackNodePtr *topPtr, char value ){
 *	return the temporary char variable
 */
 char pop( StackNodePtr *topPtr ){
-	return 'c';
+	if(isEmpty(*topPtr) == 1){
+		printf("stack is empty\n");
+	}else{
+		char c = 
+		return c;
+	}
+	//FREE MEMORY
 }
 /*
 * printing the stack
@@ -103,10 +124,10 @@ int isEmpty(StackNodePtr topPtr){
 *	return the headNodes .data value or if its not assigned return null?
 */
 char stackTop( StackNodePtr topPtr ){
-	if(isEmpty == 1){
+	if(isEmpty(topPtr) == 1){
 		printf("stack is empty\n");
 	}else{
-		return topPtr->data;
+		return (*topPtr)->data;
 	}
 }
 /*
@@ -115,7 +136,6 @@ char stackTop( StackNodePtr topPtr ){
 * Return 1 (true) if is operator
 *	otherwise return 0 (false)
 */
-
 int isOperator(char c){
 // do a case statement returning an int based on if its a operator otherwise it returns zero (default)
 	switch (c){
