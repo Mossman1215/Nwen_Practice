@@ -19,21 +19,40 @@ int isEmpty( StackNodePtr topPtr );
 void printStack( StackNodePtr topPtr );
 /* custom functions*/
 void skipWhiteSpace(int*, char*);
+int recursiveSolve(StackNodePtr *,char*,char*)
 
 int main(void){
-	//need to read data in via scanf or args
+	
 	char input[256];
 	char output[256];
 	scanf("%s",input);
+	printf("input :%s\n", input);
 	// may consider spilling the data up
-	//send to convert to post fix
 	convertToPostfix(input,output);
+	printf("output: %s\n", input);
 	return 0;
 }
 
-//define the functions here
+
 /* function that converts to postfix and calls printstack*/
 void convertToPostfix(char infix[],char postfix[]){
+	int index = 0;
+	int* indexPtr = &index;
+	StackNodePtr head = malloc(sizeof(StackNode));
+	StackNodePtr *headPtr = &head;
+	skipWhiteSpace(indexPtr,infix);
+	StackNode n = {infix[index],NULL};
+	head = &n;
+	while(infix[index]!= '\0'){
+		skipWhiteSpace(indexPtr,infix);	
+		push(headPtr,infix[index]);
+		index++;
+	}
+}
+/**
+*	functioun to solve the convert to postfix thing
+*/
+int recursiveSolve(StackNodePtr *,char*,char*){
 
 }
 /*
@@ -43,7 +62,11 @@ void convertToPostfix(char infix[],char postfix[]){
 *	
 */
 void push( StackNodePtr *topPtr, char value ){
-
+	StackNodePtr temp = *topPtr;
+	StackNodePtr newPtr = malloc(sizeof(StackNode));
+	StackNode newNode = {value,temp};
+	newPtr = &newNode;
+	*topPtr = newPtr;
 }
 
 /*
@@ -66,11 +89,25 @@ char pop( StackNodePtr *topPtr ){
 void printStack( StackNodePtr topPtr ){
 
 }
+/**
+*	check if node is empty
+*/
+int isEmpty(StackNodePtr topPtr){
+	if(topPtr==NULL){
+		return 1;
+	}else{
+		return 0;
+	}
+}
 /*
 *	return the headNodes .data value or if its not assigned return null?
 */
 char stackTop( StackNodePtr topPtr ){
-	return 'c';
+	if(isEmpty == 1){
+		printf("stack is empty\n");
+	}else{
+		return topPtr->data;
+	}
 }
 /*
 * 	check if a value is an operator which are
@@ -108,10 +145,10 @@ int precedence( char operator1, char operator2 ){
 	return 0;
 }
 
-void skipWhiteSpace(int* point,char* input){
-	int i = *point;
+void skipWhiteSpace(int* index,char* input){
+	int i = *index;
 	while(input[i] == ' '){
 		i++;
-		print("white space skip: %d\n",i);
+		printf("white space skip: %d\n",i);
 	}
 }
