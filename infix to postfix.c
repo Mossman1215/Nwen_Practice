@@ -18,7 +18,7 @@ int isEmpty( StackNodePtr topPtr );
 void printStack( StackNodePtr topPtr );
 /* custom functions*/
 void skipWhiteSpace(int*, char*);
-int recursiveSolve(StackNodePtr *,char*,char*)
+int recursiveSolve(StackNodePtr *,char*,char*);
 
 int main(void){
 	
@@ -51,6 +51,12 @@ void convertToPostfix(char infix[],char postfix[]){
 }
 /**
 *	functioun to solve the convert to postfix thing
+***********************************
+*	char data = infix[0]
+*	do algorithm
+*	create new list excluding data
+*	recursiveSolve()
+***********************************
 *	algorithm
 *	if infix is digit copy to postfix
 *	if infix is (
@@ -68,7 +74,7 @@ void convertToPostfix(char infix[],char postfix[]){
 		discard '('
 */
 void recursiveSolve(StackNodePtr *topPtr,char*infix,char*postfix){
-
+	
 }
 /*
 *	get node from head pointer store in temp variable and 
@@ -85,21 +91,25 @@ void push( StackNodePtr *topPtr, char value ){
 	*topPtr = newPtr;
 }
 /*
+*	return null if stack is empty
 *	take the head value
-*	get it's .next node and store it in a temp variable
 *	store its character in a temporary char variable
-*	then free headNode
 *	then assign headNode to temp variable
+*	get head .next node and store it in head
+*	then free tmp
 *	return the temporary char variable
 */
 char pop( StackNodePtr *topPtr ){
 	if(isEmpty(*topPtr) == 1){
 		printf("stack is empty\n");
 	}else{
-		char c = 
+		StackNodePtr temp = *topPtr
+		char c = temp->data;
+		*topPtr = (*topPtr)->next;
+		free(temp);
 		return c;
 	}
-	//FREE MEMORY
+	return NULL;
 }
 /*
 * printing the stack
