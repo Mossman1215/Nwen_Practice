@@ -18,7 +18,7 @@ int isEmpty( StackNodePtr topPtr );
 void printStack( StackNodePtr topPtr );
 /* custom functions*/
 void skipWhiteSpace(int*, char*);
-int recursiveSolve(StackNodePtr *,char*,char*);
+void recursiveSolve(StackNodePtr *,char*,char*);
 
 int main(void){
 	
@@ -109,13 +109,13 @@ char pop( StackNodePtr *topPtr ){
 	if(isEmpty(*topPtr) == 1){
 		printf("stack is empty\n");
 	}else{
-		StackNodePtr temp = *topPtr
+		StackNodePtr temp = *topPtr;
 		char c = temp->data;
-		*topPtr = (*topPtr)->next;
+		*topPtr = (*topPtr)->nextPtr;
 		free(temp);
 		return c;
 	}
-	return NULL;
+	return ' ';
 }
 /*
 * printing the stack
@@ -142,8 +142,9 @@ int isEmpty(StackNodePtr topPtr){
 char stackTop( StackNodePtr topPtr ){
 	if(isEmpty(topPtr) == 1){
 		printf("stack is empty\n");
+		return ' ';
 	}else{
-		return (*topPtr)->data;
+		return topPtr->data;
 	}
 }
 /*
