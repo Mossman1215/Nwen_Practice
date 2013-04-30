@@ -38,11 +38,12 @@ void convertToPostfix(char infix[],char postfix[]){
 	int index = 0;
 	int* indexPtr = &index;
 	StackNodePtr tmp = malloc(sizeof(StackNode));
+	StackNodePtr head = NULL;
 	if(tmp == NULL){
 		printf("memory allocation failure\n");
 		exit(0);
 	}else{
-		StackNodePtr head = tmp;	
+		head = tmp;	
 	}
 	StackNodePtr *headPtr = &head;
 	
@@ -74,7 +75,7 @@ void convertToPostfix(char infix[],char postfix[]){
 		discard '('
 */
 void recursiveSolve(StackNodePtr *topPtr,char*infix,char*postfix){
-	
+	printf("Not implemented\n");
 }
 /*
 *	get node from head pointer store in temp variable and 
@@ -86,9 +87,14 @@ void push( StackNodePtr *topPtr, char value ){
 	StackNodePtr temp = *topPtr;
 	//check for malloc falure
 	StackNodePtr newPtr = malloc(sizeof(StackNode));
-	StackNode newNode = {value,temp};
-	newPtr = &newNode;
-	*topPtr = newPtr;
+	if(newPtr == NULL){
+		printf("Memory allocation falure\n");
+		exit(0);
+	}else{
+		StackNode newNode = {value,temp};
+		newPtr = &newNode;
+		*topPtr = newPtr;
+	}
 }
 /*
 *	return null if stack is empty
@@ -118,7 +124,7 @@ char pop( StackNodePtr *topPtr ){
 *	get the headNode print it's character value then printStack the next one
 */
 void printStack( StackNodePtr topPtr ){
-
+	printf("Not implemented\n");
 }
 /**
 *	check if node is empty
