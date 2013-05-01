@@ -91,32 +91,33 @@ void recursiveSolve(StackNodePtr *topPtr,char*infix,char*postfix,int *indexPtr){
 		return;
 	}
 	char data = infix[0];
-	if(isDigit(data)){
-		(*indexPtr)++;
+	char stackTopChar = stackTop(*topPtr);
+	if(isdigit(data)){
 		postfix[*indexPtr] = data;
+		(*indexPtr)++;
 	}
 	if(isOperator(data)){
-		char stackTop = stackTop();
-		if(isOperator(stackTop)){
-			if(precedence(data,stackTop)){
+		if(isOperator(stackTopChar)){
+			if(precedence(data,stackTopChar)){
 				//pop stacktop
-				char stackTop = pop();
+				stackTopChar = pop(topPtr);
 				//push data
-				push(data);
+				push(topPtr,data);
 				//push stacktop
-				push(stackTop);
+				push(topPtr,stackTopChar);
 			}
 		}else{
-				push(data);
+				push(topPtr,data);
 		}
 	}
 	if(infix[0]== ')'){
-		while(stackTop != '('){
-			//postfix[]=pop();
+		while(stackTopChar != '('){
+			//postfix[indexptr]=pop();
+			(*indexPtr)++;
 		}
-		//pop Stack
+		pop(topPtr);
 	}
-	recursiveSolve(topPtr,infix+1,postfix);
+	recursiveSolve(topPtr,infix+1,postfix,indexPtr);
 }
 /*
 *	get node from head pointer store in temp variable and 
