@@ -227,6 +227,8 @@ int isOperator(char c){
 * ^ > (/or*) > (+or-)
 */
 int precedence( char operator1, char operator2 ){
+	char[] operatorList = {'+','-','*','/','%','^'};
+	
 	return 0;
 }
 
