@@ -19,7 +19,7 @@ int isEmpty( StackNodePtr topPtr );
 void printStack( StackNodePtr topPtr );
 /* custom functions*/
 void skipWhiteSpace(int*, char*);
-void recursiveSolve(StackNodePtr *,char*,char*);
+void recursiveSolve(StackNodePtr *,char*,char*,int*);
 
 int main(void){
 	
@@ -54,8 +54,8 @@ void convertToPostfix(char infix[],char postfix[]){
 	//for loop over entire array
 	//when infix[i] == '\0' null terminator
 		//infix[i] = ')' and infix[i+1] = null terminator
-	int *ptrcount = 0;
-	recursiveSolve(headPtr,infix,postfix);
+	
+	recursiveSolve(headPtr,infix,postfix,indexPtr);
 	
 }
 /**
@@ -86,14 +86,35 @@ void convertToPostfix(char infix[],char postfix[]){
 		discard '('
 		//print?
 */
-void recursiveSolve(StackNodePtr *topPtr,char*infix,char*postfix,int *ptrCount){
+void recursiveSolve(StackNodePtr *topPtr,char*infix,char*postfix,int *indexPtr){
 	if(*topPtr==NULL){
 		return;
 	}
 	char data = infix[0];
 	if(isDigit(data)){
-		(*ptrCount)++;
-		postfix[*ptrCount] = data;
+		(*indexPtr)++;
+		postfix[*indexPtr] = data;
+	}
+	if(isOperator(data)){
+		char stackTop = stackTop();
+		if(isOperator(stackTop)){
+			if(precedence(data,stackTop)){
+				//pop stacktop
+				char stackTop = pop();
+				//push data
+				push(data);
+				//push stacktop
+				push(stackTop);
+			}
+		}else{
+				push(data);
+		}
+	}
+	if(infix[0]== ')'){
+		while(stackTop != '('){
+			//postfix[]=pop();
+		}
+		//pop Stack
 	}
 	recursiveSolve(topPtr,infix+1,postfix);
 }
