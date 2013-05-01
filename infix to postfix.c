@@ -112,7 +112,7 @@ void recursiveSolve(StackNodePtr *topPtr,char*infix,char*postfix,int *indexPtr){
 	}
 	if(infix[0]== ')'){
 		while(stackTopChar != '('){
-			//postfix[indexptr]=pop();
+			postfix[*indexptr] = pop(topPtr);
 			(*indexPtr)++;
 		}
 		pop(topPtr);
