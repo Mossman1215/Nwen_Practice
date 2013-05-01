@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h>
 struct stackNode {
 	char data;
 	struct stackNode *nextPtr;
@@ -46,13 +47,22 @@ void convertToPostfix(char infix[],char postfix[]){
 		head = tmp;	
 	}
 	StackNodePtr *headPtr = &head;
-	
+//	Push a left parenthesis '(' onto the stack.
+	head->data = '(';
+	head->nextPtr = NULL;
+// 	Append a right parenthesis ')' to the end of infix
+	//for loop over entire array
+	//when infix[i] == '\0' null terminator
+		//infix[i] = ')' and infix[i+1] = null terminator
+
 	recursiveSolve(headPtr,infix,postfix);
 	
 }
 /**
 *	functioun to solve the convert to postfix thing
 ***********************************
+*	if stack is empty
+*		return;
 *	char data = infix[0]
 *	do algorithm
 *	create new list excluding data
@@ -67,15 +77,25 @@ void convertToPostfix(char infix[],char postfix[]){
 			if the top stack operator is higher than current operators
 				popstack and put in postfix
 				push current onto stack
-
+		OTHERWISE
+			push currentoperator onto stack
 	if infix is )
 		while '(' is not top of stack
 		pop operators from stack and place in postfix
 		then
 		discard '('
+		//print?
 */
-void recursiveSolve(StackNodePtr *topPtr,char*infix,char*postfix){
-	printf("Not implemented\n");
+void recursiveSolve(StackNodePtr *topPtr,char*infix,char*postfix,int){
+	if(*topPtr==NULL){
+		return;
+	}
+	char data = infix[0];
+	if(isDigit(data)){
+		ptrCount++;
+		postfix[ptrCount] = data;
+	}
+	recursiveSolve(topPtr,infix+1,postfix);
 }
 /*
 *	get node from head pointer store in temp variable and 
@@ -177,6 +197,7 @@ int isOperator(char c){
 *	check if operator one is before operator 2 in (bedmas?)
 *	return 1 true
 *	return 0 false
+* ^ > (/or*) > (+or-)
 */
 int precedence( char operator1, char operator2 ){
 	return 0;
