@@ -54,7 +54,7 @@ void convertToPostfix(char infix[],char postfix[]){
 	//for loop over entire array
 	//when infix[i] == '\0' null terminator
 		//infix[i] = ')' and infix[i+1] = null terminator
-
+	int *ptrcount = 0;
 	recursiveSolve(headPtr,infix,postfix);
 	
 }
@@ -86,14 +86,14 @@ void convertToPostfix(char infix[],char postfix[]){
 		discard '('
 		//print?
 */
-void recursiveSolve(StackNodePtr *topPtr,char*infix,char*postfix,int){
+void recursiveSolve(StackNodePtr *topPtr,char*infix,char*postfix,int *ptrCount){
 	if(*topPtr==NULL){
 		return;
 	}
 	char data = infix[0];
 	if(isDigit(data)){
-		ptrCount++;
-		postfix[ptrCount] = data;
+		(*ptrCount)++;
+		postfix[*ptrCount] = data;
 	}
 	recursiveSolve(topPtr,infix+1,postfix);
 }
