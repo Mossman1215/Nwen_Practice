@@ -20,7 +20,9 @@ void printStack( StackNodePtr topPtr );
 /* custom functions*/
 void skipWhiteSpace(int*, char*);
 void recursiveSolve(StackNodePtr *,char*,char*,int*);
-
+/**
+* has max value 256 chars cause i can't work out another way
+*/
 int main(void){
 	
 	char input[256];
@@ -51,12 +53,15 @@ void convertToPostfix(char infix[],char postfix[]){
 	head->data = '(';
 	head->nextPtr = NULL;
 // 	Append a right parenthesis ')' to the end of infix
-	//for loop over entire array
-	//when infix[i] == '\0' null terminator
-		//infix[i] = ')' and infix[i+1] = null terminator
-	
+	int i=0;
+	do{
+		if(infix[i]!='\0'){
+			infix[i] = ')';
+			infix[i+1] = '\0';
+		}
+		i++;
+	}while(infix[i]!='\0');
 	recursiveSolve(headPtr,infix,postfix,indexPtr);
-	
 }
 /**
 *	functioun to solve the convert to postfix thing
@@ -112,7 +117,7 @@ void recursiveSolve(StackNodePtr *topPtr,char*infix,char*postfix,int *indexPtr){
 	}
 	if(infix[0]== ')'){
 		while(stackTopChar != '('){
-			postfix[*indexptr] = pop(topPtr);
+			postfix[*indexPtr] = pop(topPtr);
 			(*indexPtr)++;
 		}
 		pop(topPtr);
