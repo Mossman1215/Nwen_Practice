@@ -228,7 +228,24 @@ int isOperator(char c){
 */
 int precedence( char operator1, char operator2 ){
 	char[] operatorList = {'+','-','*','/','%','^'};
-	
+	int opVal1=0,opVal2=0;
+	if(operator1 == operator2){
+		return 0;
+	}
+	int i;
+	for(i=0;i<7;i++){
+		if(operator1 == operatorList[i]){
+			opVal1 = i;
+		}
+		if(operator2 == operatorList[i]){
+			opVal2 = i;
+		}
+	}
+	//compare opvals
+	//if op1 is <= op2-1 (op2 is greater) (i.e. return 1)
+	if(operator1 <= (operator2-1)){
+		return 1;
+	}
 	return 0;
 }
 
