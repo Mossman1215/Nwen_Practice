@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <string.h>
+
 struct stackNode {
 	char data;
 	struct stackNode *nextPtr;
@@ -31,7 +33,9 @@ int main(void){
 	printf("input :%s\n", input);
 	// may consider spilling the data up
 	convertToPostfix(input,output);
-	printf("output: %s\n", input);
+	printf("input Postfix :%s\n", input);
+	printf("output: %s\n", output);
+	
 	return 0;
 }
 /*
@@ -53,14 +57,7 @@ void convertToPostfix(char infix[],char postfix[]){
 	head->data = '(';
 	head->nextPtr = NULL;
 // 	Append a right parenthesis ')' to the end of infix
-	int i=0;
-	do{
-		if(infix[i]!='\0'){
-			infix[i] = ')';
-			infix[i+1] = '\0';
-		}
-		i++;
-	}while(infix[i]!='\0');
+	strcat(infix,")");
 	recursiveSolve(headPtr,infix,postfix,indexPtr);
 }
 /**
@@ -227,7 +224,7 @@ int isOperator(char c){
 * ^ > (/or*) > (+or-)
 */
 int precedence( char operator1, char operator2 ){
-	char[] operatorList = {'+','-','*','/','%','^'};
+	char operatorList[] = {'+','-','*','/','%','^'};
 	int opVal1=0,opVal2=0;
 	if(operator1 == operator2){
 		return 0;
@@ -243,7 +240,7 @@ int precedence( char operator1, char operator2 ){
 	}
 	//compare opvals
 	//if op1 is <= op2-1 (op2 is greater) (i.e. return 1)
-	if(operator1 <= (operator2-1)){
+	if(opVal1<= (opVal2-1)){
 		return 1;
 	}
 	return 0;
