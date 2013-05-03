@@ -58,7 +58,7 @@ void convertToPostfix(char infix[],char postfix[]){
 	head->nextPtr = NULL;
 // 	Append a right parenthesis ')' to the end of infix
 	strcat(infix,")");
-	recursiveSolve(headPtr,infix,postfix,indexPtr);
+	//recursiveSolve(headPtr,infix,postfix,indexPtr);
 }
 /**
 *	functioun to solve the convert to postfix thing
