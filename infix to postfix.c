@@ -58,7 +58,7 @@ void convertToPostfix(char infix[],char postfix[]){
 	head->nextPtr = NULL;
 // 	Append a right parenthesis ')' to the end of infix
 	strcat(infix,")");
-	//recursiveSolve(headPtr,infix,postfix,indexPtr);
+	recursiveSolve(headPtr,infix,postfix,indexPtr);
 }
 /**
 *	functioun to solve the convert to postfix thing
@@ -89,6 +89,7 @@ void convertToPostfix(char infix[],char postfix[]){
 		//print?
 */
 void recursiveSolve(StackNodePtr *topPtr,char*infix,char*postfix,int *indexPtr){
+	printf("recursive solve called\n");
 	if(*topPtr==NULL){
 		return;
 	}
@@ -112,12 +113,14 @@ void recursiveSolve(StackNodePtr *topPtr,char*infix,char*postfix,int *indexPtr){
 				push(topPtr,data);
 		}
 	}
+	printf("infix 0: %c\n", infix[0]);
 	if(infix[0]== ')'){
 		while(stackTopChar != '('){
 			postfix[*indexPtr] = pop(topPtr);
 			(*indexPtr)++;
 		}
 		pop(topPtr);
+		
 	}
 	recursiveSolve(topPtr,infix+1,postfix,indexPtr);
 }
@@ -128,6 +131,7 @@ void recursiveSolve(StackNodePtr *topPtr,char*infix,char*postfix,int *indexPtr){
 *	
 */
 void push( StackNodePtr *topPtr, char value ){
+	printf("push called\n");
 	StackNodePtr temp = *topPtr;
 	//check for malloc falure
 	StackNodePtr newPtr = malloc(sizeof(StackNode));
@@ -150,25 +154,33 @@ void push( StackNodePtr *topPtr, char value ){
 *	return the temporary char variable
 */
 char pop( StackNodePtr *topPtr ){
+	printf("pop called\n");
 	if(isEmpty(*topPtr) == 1){
 		printf("stack is empty\n");
 	}else{
-		StackNodePtr temp = *topPtr;
+		StackNodePtr temp = (*topPtr);
 		char c = temp->data;
+		printf("crash?\n");
 		*topPtr = (*topPtr)->nextPtr;
 		free(temp);
+		printf("crash??\n");
 		return c;
 	}
 	return ' ';
 }
 /*
 * printing the stack
-*	if the next node is null return 0?
-*	otherwise
-*	get the headNode print it's character value then printStack the next one
+*	while next node is not null
+*	print node data value
+*	node = next node
+*	and finally print null
 */
 void printStack( StackNodePtr topPtr ){
-	printf("Not implemented\n");
+	while(topPtr->nextPtr != NULL){
+		printf("%c ", topPtr->data);
+		topPtr = topPtr->nextPtr;
+	}
+	printf("NULL \n");
 }
 /**
 *	check if node is empty
@@ -181,7 +193,7 @@ int isEmpty(StackNodePtr topPtr){
 	}
 }
 /*
-*	return the headNodes .data value or if its not assigned return null?
+*	return the headNodes .data value or if its not assigned return whitespace
 */
 char stackTop( StackNodePtr topPtr ){
 	if(isEmpty(topPtr) == 1){
